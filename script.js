@@ -10,7 +10,7 @@ let ballLeft = 50;
 let ballSpeed = 2;
 let ballDirection = 1;
 let ballHorizontalSpeed = 1;
-let fallSpeed = 0.5;
+let fallSpeed = 0.3; // Más lento para mayor tiempo de reacción
 let bounceFactor = 0.7;
 
 // Iniciar el juego
@@ -29,29 +29,29 @@ function moveBall() {
   ballTop += fallSpeed * ballDirection;
   ballLeft += ballHorizontalSpeed;
 
-  // Detectar los límites del área para cambiar la dirección horizontal
-  if (ballLeft <= 0 || ballLeft >= 100) {
+  // Detectar los límites laterales
+  if (ballLeft <= 5 || ballLeft >= 95) {
     ballHorizontalSpeed *= -1;
   }
 
-  // Actualizar la posición de la pelota y la hitbox
+  // Actualizar posición
   hitbox.style.top = `${ballTop}%`;
   hitbox.style.left = `${ballLeft}%`;
 
-  // Si el balón toca el suelo, termina el juego
-  if (ballTop >= 90) {
+  // Si la pelota toca el suelo, termina el juego
+  if (ballTop >= 92) {
     gameOver();
   } else if (ballTop <= 10) { 
     ballDirection = 1;
-    fallSpeed += 0.05;
+    fallSpeed += 0.02;
   }
 
   if (!isGameOver) {
-    setTimeout(moveBall, 10);
+    setTimeout(moveBall, 15);
   }
 }
 
-// Cuando el jugador hace clic en el balón
+// Cuando el jugador hace clic en la pelota
 function nominateBall() {
   if (isGameOver) return;
 
@@ -65,7 +65,7 @@ function nominateBall() {
   status.innerText = "¡Ball Nomination Exitosa!";
 
   ballDirection = -1;
-  fallSpeed = 0.5;
+  fallSpeed = 0.3;
   ballHorizontalSpeed = Math.random() * 2 - 1;
 }
 
