@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #87CEEB;
+  }
+  
+  #game {
+    position: relative;
+    width: 500px;
+    height: 800px;
+    border: 2px solid #fff;
+    background-color: #f0f8ff;
+    overflow: hidden;
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: white;
+  }
+  
+  #hitbox {
+    width: 120px;  /* Aumentamos el área de detección */
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+  
+  #ball {
+    width: 100px; /* Pelota más grande */
+    height: 100px;
+    background-color: #ffcc00;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  #status {
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+  }
+  
+  #score {
+    font-size: 20px;
+    color: white;
+    margin-top: 10px;
+  }
+  
