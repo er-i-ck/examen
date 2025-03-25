@@ -109,3 +109,4 @@ function resetBallPosition() {
     isGameStarted = false;
   }, 1000);
 }
+
