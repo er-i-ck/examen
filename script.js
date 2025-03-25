@@ -11,11 +11,10 @@ let highscore = 0;
 
 let ballTop = 50;
 let ballLeft = 50;
-let ballSpeed = 2;
 let ballDirection = 1;
 let ballHorizontalSpeed = 1;
 let fallSpeed = 0.3;
-let speedIncrement = 0.02;
+let speedMultiplier = 1;
 
 // Iniciar el juego
 function startGame() {
@@ -24,14 +23,13 @@ function startGame() {
   isGameStarted = true;
   isGameOver = false;
   score = 0;
+  speedMultiplier = 1; // Reiniciar la velocidad
   scoreElement.innerText = `Puntuación: ${score}`;
   status.innerText = "Haz clic en el balón para nominarlo.";
   
   ballTop = 50;
   ballLeft = 50;
-  ballSpeed = 2;
   fallSpeed = 0.3;
-  
   moveBall();
 }
 
@@ -39,8 +37,8 @@ function startGame() {
 function moveBall() {
   if (isGameOver) return;
 
-  ballTop += fallSpeed * ballDirection;
-  ballLeft += ballHorizontalSpeed;
+  ballTop += fallSpeed * ballDirection * speedMultiplier;
+  ballLeft += ballHorizontalSpeed * speedMultiplier;
 
   if (ballLeft <= 5 || ballLeft >= 95) {
     ballHorizontalSpeed *= -1;
@@ -53,7 +51,6 @@ function moveBall() {
     gameOver();
   } else if (ballTop <= 10) { 
     ballDirection = 1;
-    fallSpeed += 0.02;
   }
 
   if (!isGameOver) {
@@ -77,8 +74,11 @@ function nominateBall() {
   status.innerText = "¡Ball Nomination Exitosa!";
 
   ballDirection = -1;
-  fallSpeed += speedIncrement;
-  ballHorizontalSpeed = Math.random() * 2 - 1;
+
+  // Incremento de la velocidad según la puntuación
+  speedMultiplier = 1 + score * 0.05; // Aumenta 5% con cada punto
+  fallSpeed += 0.02;
+  ballHorizontalSpeed = (Math.random() * 2 - 1) * speedMultiplier;
 }
 
 // Fin del juego
@@ -109,4 +109,3 @@ function resetBallPosition() {
     isGameStarted = false;
   }, 1000);
 }
-
