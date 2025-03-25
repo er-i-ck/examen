@@ -1,78 +1,81 @@
-/* Fondo con cielo y césped */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #87CEEB, #4CAF50); /* Cielo y césped */
+    cursor: url('assets/cursor-normal.png'), auto;
     overflow: hidden;
-}
+  }
   
-#game {
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/campo-futbol.jpg') no-repeat center center;
+    background-size: cover;
+    opacity: 0.8;
+    z-index: -1;
+  }
+  
+  #game {
     position: relative;
-    width: 600px;
-    height: 800px;
+    width: 90%;
+    max-width: 600px;
+    height: 80vh;
     border-radius: 15px;
-    border: 4px solid white;
-    background: rgba(255, 255, 255, 0.2);
+    border: 4px solid rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-/* Estilos del título */
-h1 {
-    font-size: 28px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  h1 {
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-top: 20px;
-}
-
-/* Puntuación y estado */
-#status, #score, #highscore {
-    font-size: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    margin: 15px 0;
+  }
+  
+  #status, #score, #highscore {
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    margin: 10px 0;
     font-weight: bold;
-    color: #fff;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
-    margin-top: 10px;
-}
-
-/* Hitbox mejorada */
-#hitbox {
+  }
+  
+  #hitbox {
     width: 130px;
     height: 130px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
-}
-
-/* Pelota mejorada */
-#ball {
-    width: 110px;
-    height: 110px;
-    background: radial-gradient(circle, #FFD700, #FFA500); /* Amarillo con efecto */
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    animation: ball-shadow 0.5s infinite alternate;
-}
-
-/* Animación de sombra en la pelota */
-@keyframes ball-shadow {
-    from {
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-    }
-    to {
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
-    }
-}
-
+    cursor: url('assets/cursor-pointer.png'), pointer;
+  }
+  
+  #ball {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: ball-pulse 0.8s infinite alternate;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+  }
+  
+  @keyframes ball-pulse {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to { transform: translate(-50%, -50%) scale(1.05); }
+  }
+  
+  @media (max-width: 600px) {
+    #game { width: 95%; height: 90vh; }
+    h1 { font-size: 1.5rem; }
+    #hitbox { width: 100px; height: 100px; }
+  }

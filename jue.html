@@ -5,17 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juego de Nominada</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets\balon-favicon.png" type="image/x-icon">
 </head>
 <body>
   <div id="game">
     <h1>⚽ Juego de Nominada ⚽</h1>
     <p id="status">Haz clic en el balón para comenzar.</p>
     <p id="score">Puntuación: 0</p>
-    <p id="highscore">Última puntuación: 0</p>
+    <p id="highscore">Récord: 0</p>
     <div id="hitbox" onclick="nominateBall()">
-      <div id="ball"></div>
+      <img id="ball" src="assets/balon.png" alt="Balón de fútbol">
     </div>
   </div>
+  <audio id="bgMusic" loop>
+    <source src="assets/musica-fondo.mp3" type="audio/mpeg">
+  </audio>
   <script src="script.js"></script>
 </body>
 </html>
